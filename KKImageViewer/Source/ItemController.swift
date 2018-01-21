@@ -13,6 +13,8 @@ public protocol ItemController: class {
     var index: Int { get }
     
     var isInitialController: Bool { get set }
+    
+    weak var delegate: ItemControllerDelegate? { get set }
     weak var displacedViewsDataSource: DisplacedViewsDataSource? { get set }
 
     func fetchImage()
