@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+extension UIApplication {
+    
+    static var window: UIWindow {
+        return (UIApplication.shared.delegate?.window?.flatMap { $0 })!
+    }
+    
+    static var isPortraitOnly: Bool {
+        
+        let orientations = UIApplication.shared.supportedInterfaceOrientations(for: nil)
+        
+        return !(orientations.contains(.landscapeLeft)
+            || orientations.contains(.landscapeRight)
+            || orientations.contains(.landscape)
+        )
+    }
+}
