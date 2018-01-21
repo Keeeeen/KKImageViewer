@@ -53,10 +53,18 @@
 		B352F40420147FB900BDAA35 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B352F4052014805D00BDAA35 /* ImageViewerOption.swift */,
+				B352F4092014A28A00BDAA35 /* Option */,
 				B352F40720149EEA00BDAA35 /* DisplaceableView.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		B352F4092014A28A00BDAA35 /* Option */ = {
+			isa = PBXGroup;
+			children = (
+				B352F4052014805D00BDAA35 /* ImageViewerOption.swift */,
+			);
+			path = Option;
 			sourceTree = "<group>";
 		};
 		B38B3E86201374F300AE9BEB = {
