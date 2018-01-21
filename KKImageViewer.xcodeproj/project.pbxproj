@@ -46,6 +46,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B352F40420147FB900BDAA35 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		B38B3E86201374F300AE9BEB = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +74,7 @@
 		B38B3E92201374F300AE9BEB /* KKImageViewer */ = {
 			isa = PBXGroup;
 			children = (
+				B352F40420147FB900BDAA35 /* Source */,
 				B38B3E93201374F300AE9BEB /* KKImageViewer.h */,
 				B38B3E94201374F300AE9BEB /* Info.plist */,
 			);
