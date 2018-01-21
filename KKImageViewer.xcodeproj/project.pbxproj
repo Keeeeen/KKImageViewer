@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B352F4062014805D00BDAA35 /* ImageViewerOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352F4052014805D00BDAA35 /* ImageViewerOption.swift */; };
 		B38B3E95201374F300AE9BEB /* KKImageViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = B38B3E93201374F300AE9BEB /* KKImageViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B38B3EA22013750900AE9BEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B3EA12013750900AE9BEB /* AppDelegate.swift */; };
 		B38B3EA42013750900AE9BEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B3EA32013750900AE9BEB /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B352F4052014805D00BDAA35 /* ImageViewerOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerOption.swift; sourceTree = "<group>"; };
 		B38B3E90201374F300AE9BEB /* KKImageViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KKImageViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B3E93201374F300AE9BEB /* KKImageViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KKImageViewer.h; sourceTree = "<group>"; };
 		B38B3E94201374F300AE9BEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 		B352F40420147FB900BDAA35 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B352F4052014805D00BDAA35 /* ImageViewerOption.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 				TargetAttributes = {
 					B38B3E8F201374F300AE9BEB = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					B38B3E9E2013750900AE9BEB = {
@@ -207,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B352F4062014805D00BDAA35 /* ImageViewerOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +362,7 @@
 		B38B3E99201374F300AE9BEB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -370,6 +376,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Keeeeen.KKImageViewer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -378,6 +385,7 @@
 		B38B3E9A201374F300AE9BEB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
