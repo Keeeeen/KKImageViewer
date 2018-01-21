@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+public protocol ItemController: class {
+    
+    var index: Int { get }
+    
+    var isInitialController: Bool { get set }
+    weak var displacedViewsDataSource: DisplacedViewsDataSource? { get set }
+
+    func fetchImage()
+
+    func presentItem(animations: () -> Void, completion: @escaping () -> Void)
+    func dismissItem(animations: () -> Void, completion: @escaping () -> Void)
+}
