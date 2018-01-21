@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+extension UIView {
+    
+    public var boundsCenter: CGPoint {
+        return CGPoint(x: bounds.width / 2, y: bounds.height / 2)
+    }
+    
+}
