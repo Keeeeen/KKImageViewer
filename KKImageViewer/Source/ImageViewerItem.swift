@@ -11,3 +11,6 @@ import Foundation
 public typealias ImageCompletion = (UIImage?) -> Void
 public typealias FetchImageBlock = (@escaping ImageCompletion) -> Void
 
+public enum ImageViewerItem {
+    case image(fetchImageBlock: FetchImageBlock)
+}
