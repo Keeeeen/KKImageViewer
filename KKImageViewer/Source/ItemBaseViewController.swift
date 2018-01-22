@@ -26,6 +26,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     let itemView = T()
     private var isAnimating = false
     private var swipeDirection: SwipeDirection?
+    private var swipeToDismissTransition: SwipeToDismissTransition?
     
     private lazy var scrollView: UIScrollView = self.createScrollView()
     private lazy var doubleTapRecognizer: UITapGestureRecognizer = self.createDoubleTapRecognizer()
@@ -37,6 +38,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     public weak var delegate: ItemControllerDelegate?
     public weak var displacedViewsDataSource: DisplacedViewsDataSource?
     
+    // MARK: Initialize
     
     init(
         numberOfItems: Int,
@@ -46,7 +48,6 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
         isInitialController: Bool = false
         )
     {
-        
         self.index = startIndex
         self.numberOfItems = numberOfItems
         self.isInitialController = isInitialController
@@ -197,17 +198,31 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
         return indicator
     }
     
+    // MARK: - Swipe To Dimiss Methods
+    
     func handleSwipeToDismissInProgress(_ swipeDirection: SwipeDirection, for touchPoint: CGPoint) {
         
         switch (swipeDirection, index) {
         case (.horizontal, 0) where numberOfItems != 1:
-            break
+            /// edge case horizontal first index - limits the swipe to dismiss to HORIZONTAL RIGHT direction.
+            swipeToDismissTransition?
+                .didChangeInteractiveTransition(horizontalOffset: min(0, -touchPoint.x))
+            
         case (.horizontal, numberOfItems - 1) where numberOfItems != 1:
-            break
+            
+            /// edge case horizontal last index - limits the swipe to dismiss to HORIZONTAL LEFT direction.
+            swipeToDismissTransition?
+                .didChangeInteractiveTransition(horizontalOffset: max(0, -touchPoint.x))
+            
         case (.horizontal, _):
-            break
+            
+            swipeToDismissTransition?
+                .didChangeInteractiveTransition(horizontalOffset: -touchPoint.x)
+            
         case (.vertical, _):
-            break
+            
+            swipeToDismissTransition?
+                .didChangeInteractiveTransition(horizontalOffset: -touchPoint.y)
         }
     }
     
@@ -223,18 +238,59 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
         
         switch (swipeDirection, index) {
         case (.vertical, _) where velocity.y < -thresholdVelocity:
-            break
+            
+            swipeToDismissTransition?
+                .didFinishInteractiveTransition(
+                    with: swipeDirection,
+                    touchPoint: touchPoint.y,
+                    targetOffset: view.bounds.height / 2 + itemView.bounds.height / 2,
+                    escapeVelocity: velocity.y,
+                    completion: swipeToDimissCompletionBlock
+            )
+            
         case (.vertical, _) where thresholdVelocity < velocity.y:
-            break
-        case (.horizontal, 0) where thresholdVelocity < velocity.x:
-            break
-        case (.horizontal, numberOfItems - 1) where velocity.x < -thresholdVelocity:
-            break
-        default:
-            break
-        }
         
+            swipeToDismissTransition?
+                .didFinishInteractiveTransition(
+                    with: swipeDirection,
+                    touchPoint: touchPoint.y,
+                    targetOffset: view.bounds.height / 2 - itemView.bounds.height / 2,
+                    escapeVelocity: velocity.y,
+                    completion: swipeToDimissCompletionBlock
+            )
+            
+        case (.horizontal, 0) where thresholdVelocity < velocity.x:
+            
+            swipeToDismissTransition?
+                .didFinishInteractiveTransition(
+                    with: swipeDirection,
+                    touchPoint: touchPoint.x,
+                    targetOffset: view.bounds.width / 2 - itemView.bounds.width / 2,
+                    escapeVelocity: velocity.x,
+                    completion: swipeToDimissCompletionBlock
+            )
+            
+        case (.horizontal, numberOfItems - 1) where velocity.x < -thresholdVelocity:
+            
+            swipeToDismissTransition?
+                .didFinishInteractiveTransition(
+                    with: swipeDirection,
+                    touchPoint: touchPoint.x,
+                    targetOffset: view.bounds.width / 2 + itemView.bounds.width / 2,
+                    escapeVelocity: velocity.x,
+                    completion: swipeToDimissCompletionBlock
+            )
+            
+        default:
+            
+            swipeToDismissTransition?
+                .cancelInteractiveTransition { [weak self] in
+                    self?.swipeDirection = nil
+            }
+        }
     }
+    
+    // MARK: - Internal Methods
     
     func displacementTargetSize(for size: CGSize) -> CGSize {
         
@@ -316,7 +372,8 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
                         animatedImageView.bounds.size = self?.displacementTargetSize(for: image.size) ?? image.size
                         animatedImageView.center = self?.view.boundsCenter ?? .zero
                 
-                    }, completion: { [weak self] _ in
+                    },
+                    completion: { [weak self] _ in
                         self?.itemView.isHidden = false
                         displacedView.isHidden = false
                         animatedImageView.removeFromSuperview()
@@ -495,13 +552,21 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
             swipeDirection = fabs(velocity.x) > fabs(velocity.y) ? .horizontal : .vertical
         }
         
+        guard let swipingDirection = swipeDirection else { return }
+        
         switch recognizer.state {
         case .began:
-            break
+            
+            swipeToDismissTransition = SwipeToDismissTransition(scrollView: scrollView)
+        
         case .changed:
-            break
+        
+            handleSwipeToDismissInProgress(swipingDirection, for: touchPoint)
+       
         case .ended:
-            break
+        
+            handleSwipeToDimissEnded(swipingDirection, velocity: velocity, touchPoint: touchPoint)
+        
         case .cancelled, .failed, .possible:
             break
         }
