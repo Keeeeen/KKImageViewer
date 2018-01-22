@@ -12,7 +12,7 @@ public protocol ItemController: class {
     
     var index: Int { get }
     
-    var isInitialController: Bool { get set }
+    var isInitialController: Bool { get }
     
     weak var delegate: ItemControllerDelegate? { get set }
     weak var displacedViewsDataSource: DisplacedViewsDataSource? { get set }
