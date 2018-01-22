@@ -43,6 +43,9 @@ public struct ImageViewerOption {
     /// Allows to set maximum magnification factor for the image
     public var maximumZoomScale: CGFloat = 8
     
+    /// Allows to set maximum magnification factor when double tap
+    public var doubleTapZoomScale: CGFloat = 7
+    
     /// Sets the duration of the animation when item is double tapped and transitions between ScaleToAspectFit & ScaleToAspectFill sizes.
     public var doubleTapToZoomDuration: TimeInterval = 0.15
     
