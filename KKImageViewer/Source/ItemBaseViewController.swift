@@ -8,11 +8,6 @@
 
 import UIKit
 
-enum SwipeDirection {
-    case horizontal
-    case vertical
-}
-
 public typealias ImageCompletion = (UIImage?) -> Void
 public typealias FetchImageBlock = (@escaping ImageCompletion) -> Void
 
