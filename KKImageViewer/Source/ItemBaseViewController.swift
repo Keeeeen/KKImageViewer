@@ -8,9 +8,6 @@
 
 import UIKit
 
-public typealias ImageCompletion = (UIImage?) -> Void
-public typealias FetchImageBlock = (@escaping ImageCompletion) -> Void
-
 open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, UIScrollViewDelegate, UIGestureRecognizerDelegate where T: ItemView {
     
     // MARK: ItemController Properties
