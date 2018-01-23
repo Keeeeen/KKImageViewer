@@ -29,6 +29,8 @@
 		B352F4342017685600BDAA35 /* ImageViewerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352F4332017685600BDAA35 /* ImageViewerControllerDelegate.swift */; };
 		B352F43C2017755F00BDAA35 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352F43A2017755F00BDAA35 /* CollectionViewCell.swift */; };
 		B352F43D2017755F00BDAA35 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B352F43B2017755F00BDAA35 /* CollectionViewCell.xib */; };
+		B352F43E20177A6D00BDAA35 /* KKImageViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38B3E90201374F300AE9BEB /* KKImageViewer.framework */; };
+		B352F43F20177A6D00BDAA35 /* KKImageViewer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B38B3E90201374F300AE9BEB /* KKImageViewer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B38B3E95201374F300AE9BEB /* KKImageViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = B38B3E93201374F300AE9BEB /* KKImageViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B38B3EA22013750900AE9BEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B3EA12013750900AE9BEB /* AppDelegate.swift */; };
 		B38B3EA42013750900AE9BEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B3EA32013750900AE9BEB /* ViewController.swift */; };
@@ -36,6 +38,30 @@
 		B38B3EA92013750900AE9BEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B38B3EA82013750900AE9BEB /* Assets.xcassets */; };
 		B38B3EAC2013750900AE9BEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B38B3EAA2013750900AE9BEB /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B352F44020177A6D00BDAA35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B38B3E87201374F300AE9BEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B38B3E8F201374F300AE9BEB;
+			remoteInfo = KKImageViewer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B352F44220177A6D00BDAA35 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B352F43F20177A6D00BDAA35 /* KKImageViewer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B352F4052014805D00BDAA35 /* ImageViewerOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerOption.swift; sourceTree = "<group>"; };
@@ -84,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B352F43E20177A6D00BDAA35 /* KKImageViewer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,10 +282,12 @@
 				B38B3E9B2013750900AE9BEB /* Sources */,
 				B38B3E9C2013750900AE9BEB /* Frameworks */,
 				B38B3E9D2013750900AE9BEB /* Resources */,
+				B352F44220177A6D00BDAA35 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B352F44120177A6D00BDAA35 /* PBXTargetDependency */,
 			);
 			name = Demo;
 			productName = Demo;
@@ -365,6 +394,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B352F44120177A6D00BDAA35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B38B3E8F201374F300AE9BEB /* KKImageViewer */;
+			targetProxy = B352F44020177A6D00BDAA35 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B38B3EA52013750900AE9BEB /* Main.storyboard */ = {
@@ -547,6 +584,7 @@
 		B38B3EAF2013750900AE9BEB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9732F2SND3;
@@ -562,6 +600,7 @@
 		B38B3EB02013750900AE9BEB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9732F2SND3;
