@@ -127,7 +127,7 @@ public struct ImageViewerOption {
     public var swipeToDismissThresholdVelocity: CGFloat = 500
     
     /// Allows to decide direction of swipe to dismiss, or disable it altogether
-    public var swipeToDismissMode: SwipeToDismissMode = .always
+    public var swipeToDismissMode: SwipeToDismissMode = .vertical
     
     /// Allows to set rotation support support with relation to rotation support in the hosting app.
     public var rotationMode: RotationMode = .always
