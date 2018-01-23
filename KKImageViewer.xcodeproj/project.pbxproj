@@ -92,14 +92,10 @@
 				B352F40A2014A2FF00BDAA35 /* Extensions */,
 				B352F4092014A28A00BDAA35 /* Option */,
 				B352F43520176FA100BDAA35 /* ItemController */,
-				B352F40720149EEA00BDAA35 /* DisplaceableView.swift */,
-				B352F40F2014B99400BDAA35 /* DisplacedViewsDataSource.swift */,
-				B352F4152014C10500BDAA35 /* ItemView.swift */,
-				B352F4212015F4AE00BDAA35 /* SwipeToDismissTransition.swift */,
-				B352F41B2014D86B00BDAA35 /* UtilityFunctions.swift */,
+				B352F4372017714900BDAA35 /* DisplacedViews */,
 				B352F4362017700C00BDAA35 /* ImageViewer */,
-				B352F42B20163D0C00BDAA35 /* ImageViewController.swift */,
-				B352F42D201705D700BDAA35 /* BlurView.swift */,
+				B352F4382017716E00BDAA35 /* Transition */,
+				B352F41B2014D86B00BDAA35 /* UtilityFunctions.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -126,6 +122,8 @@
 		B352F43520176FA100BDAA35 /* ItemController */ = {
 			isa = PBXGroup;
 			children = (
+				B352F439201771F600BDAA35 /* Image */,
+				B352F4152014C10500BDAA35 /* ItemView.swift */,
 				B352F4112014BC2F00BDAA35 /* ItemController.swift */,
 				B352F4172014C22A00BDAA35 /* ItemControllerDelegate.swift */,
 				B352F4192014C5C100BDAA35 /* ItemBaseViewController.swift */,
@@ -136,6 +134,7 @@
 		B352F4362017700C00BDAA35 /* ImageViewer */ = {
 			isa = PBXGroup;
 			children = (
+				B352F42D201705D700BDAA35 /* BlurView.swift */,
 				B352F4252016353B00BDAA35 /* ImageViewerItem.swift */,
 				B352F4272016376000BDAA35 /* ImageViewerDataSource.swift */,
 				B352F4292016391500BDAA35 /* ImageViewerPagingDataSource.swift */,
@@ -143,6 +142,31 @@
 				B352F4332017685600BDAA35 /* ImageViewerControllerDelegate.swift */,
 			);
 			path = ImageViewer;
+			sourceTree = "<group>";
+		};
+		B352F4372017714900BDAA35 /* DisplacedViews */ = {
+			isa = PBXGroup;
+			children = (
+				B352F40720149EEA00BDAA35 /* DisplaceableView.swift */,
+				B352F40F2014B99400BDAA35 /* DisplacedViewsDataSource.swift */,
+			);
+			path = DisplacedViews;
+			sourceTree = "<group>";
+		};
+		B352F4382017716E00BDAA35 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				B352F4212015F4AE00BDAA35 /* SwipeToDismissTransition.swift */,
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
+		B352F439201771F600BDAA35 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				B352F42B20163D0C00BDAA35 /* ImageViewController.swift */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		B38B3E86201374F300AE9BEB = {
