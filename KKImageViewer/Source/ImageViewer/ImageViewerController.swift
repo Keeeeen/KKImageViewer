@@ -81,7 +81,8 @@ open class ImageViewerController: UIPageViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(ImageViewerController.rotate),
-                                               name: .UIDeviceOrientationDidChange, object: nil)
+                                               name: .UIDeviceOrientationDidChange,
+                                               object: nil)
     }
     
     required public init?(coder: NSCoder) {
@@ -272,7 +273,7 @@ open class ImageViewerController: UIPageViewController {
             .insetBy(dx: -halfWidth,
                      dy: -halfHeight)
             .size
-        
+
         overlayView.center = CGPoint(x: halfWidth, y: halfHeight)
         
         view.addSubview(overlayView)

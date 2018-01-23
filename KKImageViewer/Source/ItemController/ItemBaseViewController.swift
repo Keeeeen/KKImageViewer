@@ -63,10 +63,6 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
         modalPresentationStyle = .custom
         
         itemView.isHidden = isInitialController
-        
-        if let swipeToDismissRecognizer = swipeToDismissRecognizer {
-            view.addGestureRecognizer(swipeToDismissRecognizer)
-        }
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -84,6 +80,10 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
 
         view.addSubview(scrollView)
         view.addSubview(activityIndicatorView)
+        
+        if let swipeToDismissRecognizer = swipeToDismissRecognizer {
+            view.addGestureRecognizer(swipeToDismissRecognizer)
+        }
         
         fetchImage()
     }
@@ -103,7 +103,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
         if let size = itemView.image?.size , size != .zero {
             
             let aspectFitItemSize = aspectFitSize(forContentOfSize: size,
-                                                  inBounds: self.scrollView.bounds.size)
+                                                  inBounds: scrollView.bounds.size)
             
             itemView.bounds.size = aspectFitItemSize
             scrollView.contentSize = itemView.bounds.size
@@ -155,7 +155,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     
     private func createDoubleTapRecognizer() -> UITapGestureRecognizer {
         let recognizer = UITapGestureRecognizer()
-        recognizer.numberOfTouchesRequired = 2
+        recognizer.numberOfTapsRequired = 2
         recognizer.addTarget(self, action: #selector(scrollViewDidDoubleTap(_:)))
         return recognizer
     }
@@ -219,7 +219,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
         case (.vertical, _):
             
             swipeToDismissTransition?
-                .didChangeInteractiveTransition(horizontalOffset: -touchPoint.y)
+                .didChangeInteractiveTransition(verticalOffset: -touchPoint.y)
         }
     }
     
@@ -251,7 +251,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
                 .didFinishInteractiveTransition(
                     with: swipeDirection,
                     touchPoint: touchPoint.y,
-                    targetOffset: view.bounds.height / 2 - itemView.bounds.height / 2,
+                    targetOffset: -(view.bounds.height / 2) - itemView.bounds.height / 2,
                     escapeVelocity: velocity.y,
                     completion: swipeToDimissCompletionBlock
             )
@@ -262,7 +262,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
                 .didFinishInteractiveTransition(
                     with: swipeDirection,
                     touchPoint: touchPoint.x,
-                    targetOffset: view.bounds.width / 2 - itemView.bounds.width / 2,
+                    targetOffset: -(view.bounds.width / 2) - itemView.bounds.width / 2,
                     escapeVelocity: velocity.x,
                     completion: swipeToDimissCompletionBlock
             )
@@ -330,7 +330,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     }
     
     public func presentItem(animations: () -> Void, completion: @escaping () -> Void) {
-        if !isAnimating { return }
+        if isAnimating { return }
         isAnimating = true
         
         animations()

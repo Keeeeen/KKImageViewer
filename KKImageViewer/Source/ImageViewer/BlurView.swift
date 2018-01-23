@@ -22,11 +22,12 @@ class BlurView: UIView {
         
         colorView.alpha = 0
         colorView.backgroundColor = option.overlayColor
-        addSubview(colorView)
         
         containerView.alpha = 0
-        containerView.addSubview(blurView)
+        
         addSubview(containerView)
+        containerView.addSubview(blurView)
+        addSubview(colorView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,7 +64,10 @@ class BlurView: UIView {
                 delay: option.colorDismissDelay,
                 options: .curveLinear,
                 animations: { [weak self] in
-                    self?.colorView.alpha = 0
+                    
+                    guard let weakSelf = self else { return }
+                    
+                    weakSelf.colorView.alpha = weakSelf.option.overlayColorOpacity
                 },
                 completion: nil
         )
