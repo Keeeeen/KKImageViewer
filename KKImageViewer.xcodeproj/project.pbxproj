@@ -25,6 +25,7 @@
 		B352F42A2016391500BDAA35 /* ImageViewerPagingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352F4292016391500BDAA35 /* ImageViewerPagingDataSource.swift */; };
 		B352F42C20163D0C00BDAA35 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352F42B20163D0C00BDAA35 /* ImageViewController.swift */; };
 		B352F42E201705D700BDAA35 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352F42D201705D700BDAA35 /* BlurView.swift */; };
+		B352F43020170EFF00BDAA35 /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352F42F20170EFF00BDAA35 /* ImageViewerController.swift */; };
 		B38B3E95201374F300AE9BEB /* KKImageViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = B38B3E93201374F300AE9BEB /* KKImageViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B38B3EA22013750900AE9BEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B3EA12013750900AE9BEB /* AppDelegate.swift */; };
 		B38B3EA42013750900AE9BEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B3EA32013750900AE9BEB /* ViewController.swift */; };
@@ -52,6 +53,7 @@
 		B352F4292016391500BDAA35 /* ImageViewerPagingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerPagingDataSource.swift; sourceTree = "<group>"; };
 		B352F42B20163D0C00BDAA35 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		B352F42D201705D700BDAA35 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		B352F42F20170EFF00BDAA35 /* ImageViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerController.swift; sourceTree = "<group>"; };
 		B38B3E90201374F300AE9BEB /* KKImageViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KKImageViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B3E93201374F300AE9BEB /* KKImageViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KKImageViewer.h; sourceTree = "<group>"; };
 		B38B3E94201374F300AE9BEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				B352F4292016391500BDAA35 /* ImageViewerPagingDataSource.swift */,
 				B352F42B20163D0C00BDAA35 /* ImageViewController.swift */,
 				B352F42D201705D700BDAA35 /* BlurView.swift */,
+				B352F42F20170EFF00BDAA35 /* ImageViewerController.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				B352F4222015F4AE00BDAA35 /* SwipeToDismissTransition.swift in Sources */,
 				B352F4062014805D00BDAA35 /* ImageViewerOption.swift in Sources */,
 				B352F42A2016391500BDAA35 /* ImageViewerPagingDataSource.swift in Sources */,
+				B352F43020170EFF00BDAA35 /* ImageViewerController.swift in Sources */,
 				B352F4202014D9C400BDAA35 /* CGPoint.swift in Sources */,
 				B352F40820149EEA00BDAA35 /* DisplaceableView.swift in Sources */,
 				B352F4162014C10500BDAA35 /* ItemView.swift in Sources */,
