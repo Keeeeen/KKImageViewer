@@ -82,6 +82,8 @@ public struct ImageViewerOption {
     /// Transition duration for the item when the fade-in/fade-out effect is used globally for items while Gallery is being presented/dismissed.
     public var itemFadeDuration: TimeInterval = 0.3
     
+    public var decorationViewsCloseDuration: TimeInterval = 0.15
+    
     /// Transition duration for header view when they fade-in/fade-out after single tap.
     public var headerviewFadeDuration: TimeInterval = 0.15
     
