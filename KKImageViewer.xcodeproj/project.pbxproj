@@ -91,12 +91,10 @@
 			children = (
 				B352F40A2014A2FF00BDAA35 /* Extensions */,
 				B352F4092014A28A00BDAA35 /* Option */,
+				B352F43520176FA100BDAA35 /* ItemController */,
 				B352F40720149EEA00BDAA35 /* DisplaceableView.swift */,
 				B352F40F2014B99400BDAA35 /* DisplacedViewsDataSource.swift */,
-				B352F4112014BC2F00BDAA35 /* ItemController.swift */,
 				B352F4152014C10500BDAA35 /* ItemView.swift */,
-				B352F4172014C22A00BDAA35 /* ItemControllerDelegate.swift */,
-				B352F4192014C5C100BDAA35 /* ItemBaseViewController.swift */,
 				B352F4212015F4AE00BDAA35 /* SwipeToDismissTransition.swift */,
 				B352F41B2014D86B00BDAA35 /* UtilityFunctions.swift */,
 				B352F4252016353B00BDAA35 /* ImageViewerItem.swift */,
@@ -127,6 +125,16 @@
 				B352F41F2014D9C400BDAA35 /* CGPoint.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B352F43520176FA100BDAA35 /* ItemController */ = {
+			isa = PBXGroup;
+			children = (
+				B352F4112014BC2F00BDAA35 /* ItemController.swift */,
+				B352F4172014C22A00BDAA35 /* ItemControllerDelegate.swift */,
+				B352F4192014C5C100BDAA35 /* ItemBaseViewController.swift */,
+			);
+			path = ItemController;
 			sourceTree = "<group>";
 		};
 		B38B3E86201374F300AE9BEB = {
