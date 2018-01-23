@@ -11,10 +11,9 @@ import Foundation
 class BlurView: UIView {
     
     private let option: ImageViewerOption
-    
-    private let colorView = UIView()
     private let containerView = UIView()
-    private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+    let colorView = UIView()
+    let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     
     init(option: ImageViewerOption) {
         self.option = option
