@@ -55,11 +55,15 @@ extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        var option = ImageViewerOption()
+        option.displacementTransitionStyle = .springBounce(0.3)
+        option.overlayBlurOpacity = 0.0
+        
         let imageViewer = ImageViewerController(
             startIndex: indexPath.row,
             itemDataSource: self,
             displacedViewsDataSource: self,
-            option: ImageViewerOption()
+            option: option
         )
         
         present(imageViewer, animated: false, completion: nil)
