@@ -362,8 +362,8 @@ extension ImageViewerController: ItemControllerDelegate {
         headerViewHidden = !headerViewHidden
         footerViewHidden = !footerViewHidden
         
-        animateHeaderView(visibale: headerViewHidden)
-        animateFooterView(visibale: footerViewHidden)
+        animateHeaderView(visibale: !headerViewHidden)
+        animateFooterView(visibale: !footerViewHidden)
     }
     
     open func itemControllerDidLongPress(_ controller: ItemController, in item: ItemView) {

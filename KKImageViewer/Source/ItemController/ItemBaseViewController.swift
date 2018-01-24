@@ -398,7 +398,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     }
     
     public func dismissItem(animations: () -> Void, completion: @escaping () -> Void) {
-        if !isAnimating { return }
+        if isAnimating { return }
         isAnimating = true
         
         animations()
