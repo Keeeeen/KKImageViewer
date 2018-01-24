@@ -41,7 +41,7 @@ final class ImageViewerPagingDataSource: NSObject, UIPageViewControllerDataSourc
             previousIndex = currentViewController.index - 1
         }
         
-        if currentViewController.index < numberOfItems - 1 {
+        if currentViewController.index > 0 {
             return createItemController(at: previousIndex)
         } else {
             return nil
