@@ -9,6 +9,46 @@
 import UIKit
 import KKImageViewer
 
+final class HeaderView: UIView {
+    
+    private lazy var button: UIButton = self.createUIButton()
+    var tapped: (() -> Void)?
+    
+    init() {
+        super.init(frame: .zero)
+        
+        addSubview(button)
+    }
+    
+    override func updateConstraints() {
+        
+        button.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        button.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        button.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        super.updateConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func createUIButton() -> UIButton {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Close", for: .normal)
+        button.addTarget(self,
+                         action: #selector(buttonTapped),
+                         for: .touchUpInside)
+        return button
+    }
+    
+    @objc
+    func buttonTapped() {
+        tapped?()
+    }
+}
+
 extension UIImageView: DisplaceableView { }
 
 class ViewController: UIViewController {
@@ -16,6 +56,8 @@ class ViewController: UIViewController {
     private let items = [#imageLiteral(resourceName: "cat_1"), #imageLiteral(resourceName: "cat_2"), #imageLiteral(resourceName: "cat_3"), #imageLiteral(resourceName: "cat_4")]
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    let headerView = HeaderView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +96,8 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         var option = ImageViewerOption()
+        option.doubleTapZoomScale = 3.5
         option.displacementTransitionStyle = .springBounce(0.3)
         option.overlayBlurOpacity = 0.0
         
@@ -66,6 +108,12 @@ extension ViewController: UICollectionViewDelegate {
             option: option
         )
         
+        imageViewer.headerView = headerView
+        imageViewer.headerViewHeight = 50
+        
+        headerView.tapped = {
+            imageViewer.close(completion: nil)
+        }
         present(imageViewer, animated: false, completion: nil)
     }
 }
