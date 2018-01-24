@@ -49,36 +49,6 @@ public struct ImageViewerOption {
     /// Sets the duration of the animation when item is double tapped and transitions between ScaleToAspectFit & ScaleToAspectFill sizes.
     public var doubleTapToZoomDuration: TimeInterval = 0.15
     
-    /// Transition duration for the blur layer component of the overlay when Gallery is being presented.
-    public var blurPresentDuration: TimeInterval = 0.5
-    
-    /// Delayed start for the transition of the blur layer component of the overlay when Gallery is being presented.
-    public var blurPresentDelay: TimeInterval = 0
-    
-    /// Transition duration for the color layer component of the overlay when Gallery is being presented.
-    public var colorPresentDuration: TimeInterval = 0.25
-    
-    /// Delayed start for the transition of color layer component of the overlay when Gallery is being presented.
-    public var colorPresentDelay: TimeInterval = 0
-    
-    /// Delayed start for header view transition (fade-in) when Gallery is being presented.
-//    public var headerViewPresentDelay: TimeInterval = 0.2
-    
-    /// Delayed start for footer view transition (fade-in) when Gallery is being presented.
-//    public var footerViewPresentDelay: TimeInterval = 0.2
-    
-    /// Transition duration for the blur layer component of the overlay when Gallery is being dismissed.
-    public var blurDismissDuration: TimeInterval = 0.1
-    
-    /// Transition delay for the blur layer component of the overlay when Gallery is being dismissed.
-    public var blurDismissDelay: TimeInterval = 0.4
-    
-    /// Transition duration for the color layer component of the overlay when Gallery is being dismissed.
-    public var colorDismissDuration: TimeInterval = 0.45
-    
-    /// Transition delay for the color layer component of the overlay when Gallery is being dismissed.
-    public var colorDismissDelay: TimeInterval = 0
-    
     /// Transition duration for the item when the fade-in/fade-out effect is used globally for items while Gallery is being presented/dismissed.
     public var itemFadeDuration: TimeInterval = 0.3
     
