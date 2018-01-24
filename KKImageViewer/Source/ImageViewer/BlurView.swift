@@ -60,8 +60,8 @@ class BlurView: UIView {
         
         UIView
             .animate(
-                withDuration: option.colorDismissDuration,
-                delay: option.colorDismissDelay,
+                withDuration: option.colorPresentDuration,
+                delay: option.colorPresentDelay,
                 options: .curveLinear,
                 animations: { [weak self] in
                     
