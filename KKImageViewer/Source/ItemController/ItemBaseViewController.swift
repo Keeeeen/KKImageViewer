@@ -370,6 +370,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
                     },
                     completion: { [weak self] _ in
                         self?.itemView.isHidden = false
+                        displacedView.isHidden = false
                         animatedImageView.removeFromSuperview()
                         
                         self?.isAnimating = false
@@ -548,11 +549,6 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     @objc
     func scrollViewDidSwipeToDismiss(_ recognizer: UIPanGestureRecognizer) {
         if scrollView.zoomScale != scrollView.minimumZoomScale { return }
-        
-        if var displacedView = displacedViewsDataSource?.provideDisplacementItem(at: index) {
-            
-            displacedView.isHidden = false
-        }
         
         let velocity = recognizer.velocity(in: view)
         let touchPoint = recognizer.translation(in: view)
