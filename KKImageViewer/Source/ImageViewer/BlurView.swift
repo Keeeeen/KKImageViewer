@@ -42,58 +42,64 @@ class BlurView: UIView {
         colorView.frame = bounds
     }
     
-    func present() {
+    func presentWithFade() {
         
         UIView
             .animate(
-                withDuration: option.blurPresentDuration,
-                delay: option.blurPresentDelay,
+                withDuration: option.itemFadeDuration,
+                delay: 0,
                 options: .curveLinear,
                 animations: { [weak self] in
                     
                     guard let weakSelf = self else { return }
                     
                     weakSelf.containerView.alpha = weakSelf.option.overlayBlurOpacity
-                },
-                completion: nil
-        )
-        
-        UIView
-            .animate(
-                withDuration: option.colorPresentDuration,
-                delay: option.colorPresentDelay,
-                options: .curveLinear,
-                animations: { [weak self] in
-                    
-                    guard let weakSelf = self else { return }
-                    
                     weakSelf.colorView.alpha = weakSelf.option.overlayColorOpacity
                 },
                 completion: nil
         )
     }
     
-    func dismiss() {
-        
+    func presentWithDisplacement() {
         UIView
             .animate(
-                withDuration: option.blurDismissDuration,
-                delay: option.blurDismissDelay,
-                options: .transitionCurlUp,
-                animations: { [weak self] in
-                    self?.containerView.alpha = 0
-                }, completion: nil
-        )
-        
-        UIView
-            .animate(
-                withDuration: option.colorDismissDuration,
-                delay: option.colorDismissDelay,
+                withDuration: option.displacementDuration,
+                delay: 0,
                 options: .curveLinear,
                 animations: { [weak self] in
+                    guard let weakSelf = self else { return }
+                    
+                    weakSelf.colorView.alpha = weakSelf.option.overlayColorOpacity
+                    weakSelf.containerView.alpha = weakSelf.option.overlayBlurOpacity
+
+                }, completion: nil
+        )
+    }
+    
+    func dismissWithDisplacement() {
+        
+        UIView
+            .animate(
+                withDuration: option.reverseDisplacementDuration,
+                delay: 0,
+                options: .curveLinear,
+                animations: { [weak self] in
+                    self?.containerView.alpha = 0
                     self?.colorView.alpha = 0
-                },
-                completion: nil
+                }, completion: nil
+        )
+    }
+    
+    func dimissWithFade() {
+        UIView
+            .animate(
+                withDuration: option.itemFadeDuration,
+                delay: 0,
+                options: .curveLinear,
+                animations: { [weak self] in
+                    self?.containerView.alpha = 0
+                    self?.colorView.alpha = 0
+                }, completion: nil
         )
     }
 }

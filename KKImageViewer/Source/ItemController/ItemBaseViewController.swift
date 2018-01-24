@@ -403,34 +403,46 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
         
         animations()
         
-        guard var displacedView = findVisibleDisplacedView() else { return }
-        
-        displacedView.isHidden = !option.displacementKeepOriginalInPlace
-        
-        UIView
-            .animate(
-                withDuration: option.reverseDisplacementDuration,
-                animations: { [weak self] in
-                    guard let weakSelf = self else { return }
-                    
-                    weakSelf.scrollView.zoomScale = weakSelf.minimumZoomScale
-                    
-                    if UIApplication.isPortraitOnly {
-                        displacedView.isHidden = true
+        if var displacedView = findVisibleDisplacedView() {
+            displacedView.isHidden = !option.displacementKeepOriginalInPlace
+            
+            UIView
+                .animate(
+                    withDuration: option.reverseDisplacementDuration,
+                    animations: { [weak self] in
+                        guard let weakSelf = self else { return }
+                        
+                        weakSelf.scrollView.zoomScale = weakSelf.minimumZoomScale
+                        
+                        if UIApplication.isPortraitOnly {
+                            displacedView.isHidden = true
+                        }
+                        
+                        weakSelf.itemView.bounds = displacedView.bounds
+                        weakSelf.itemView.center = displacedView.convert(displacedView.boundsCenter, to: weakSelf.view)
+                        weakSelf.itemView.clipsToBounds = true
+                        weakSelf.itemView.contentMode = displacedView.contentMode
+                    },
+                    completion:  { [weak self] _ in
+                        self?.isAnimating = false
+                        displacedView.isHidden = false
+                        
+                        completion()
                     }
-                    
-                    weakSelf.itemView.bounds = displacedView.bounds
-                    weakSelf.itemView.center = displacedView.convert(displacedView.boundsCenter, to: weakSelf.view)
-                    weakSelf.itemView.clipsToBounds = true
-                    weakSelf.itemView.contentMode = displacedView.contentMode
-                },
-                completion:  { [weak self] _ in
+            )
+        } else {
+            UIView
+                .animate(
+                    withDuration: option.itemFadeDuration,
+                    animations: {  [weak self] in
+                        self?.itemView.alpha = 0
+                    },
+                    completion: { [weak self] _ in
                     self?.isAnimating = false
-                    displacedView.isHidden = false
-                    
                     completion()
                 }
-        )
+            )
+        }
     }
     
     // MARK: - UIScrollViewDelegate

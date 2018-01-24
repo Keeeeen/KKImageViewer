@@ -27,6 +27,7 @@ open class ImageViewerController: UIPageViewController {
     
     open var headerView: UIView?
     open var footerView: UIView?
+    open var headerViewHeight: CGFloat = 0
     
     public weak var imageViewerControllerDelegate: ImageViewerControllerDelegate?
     
@@ -97,7 +98,7 @@ open class ImageViewerController: UIPageViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.clipsToBounds = true
         
         configureHeaderView()
@@ -130,16 +131,53 @@ open class ImageViewerController: UIPageViewController {
     
     override open func updateViewConstraints() {
         
-        headerView?.topAnchor
-            .constraint(equalTo: view.topAnchor)
-            .isActive = true
+        if #available(iOS 11.0, *) {
+            
+            if option.statusBarHidden, let superView = view.superview {
+                headerView?.topAnchor
+                    .constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor)
+                    .isActive = true
+            } else {
+                headerView?.topAnchor
+                    .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+                    .isActive = true
+            }
+            
+            headerView?.topAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+                .isActive = true
+            
+            headerView?.leadingAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
+                .isActive = true
+            
+            headerView?.rightAnchor
+                .constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+                .isActive = true
+            
+        } else {
+            
+            if option.statusBarHidden, let superView = view.superview {
+                headerView?.topAnchor
+                    .constraint(equalTo: superView.topAnchor)
+                    .isActive = true
+            } else {
+                headerView?.topAnchor
+                    .constraint(equalTo: view.topAnchor)
+                    .isActive = true
+            }
+            
+            headerView?.leadingAnchor
+                .constraint(equalTo: view.leadingAnchor)
+                .isActive = true
+            
+            headerView?.rightAnchor
+                .constraint(equalTo: view.rightAnchor)
+                .isActive = true
+        }
         
-        headerView?.leadingAnchor
-            .constraint(equalTo: view.leadingAnchor)
-            .isActive = true
-        
-        headerView?.rightAnchor
-            .constraint(equalTo: view.rightAnchor)
+        headerView?.heightAnchor
+            .constraint(equalToConstant: headerViewHeight)
             .isActive = true
         
         footerView?.bottomAnchor
@@ -171,7 +209,13 @@ open class ImageViewerController: UIPageViewController {
         initialItemController?
             .presentItem(
                 animations: { [weak self] in
-                    self?.overlayView.present()
+                    guard let weakSelf = self else { return }
+                    
+                    if weakSelf.displacedViewsDataSource == nil {
+                        weakSelf.overlayView.presentWithFade()
+                    } else {
+                        weakSelf.overlayView.presentWithDisplacement()
+                    }
                 },
                 completion: { [weak self] in
                     guard let weakSelf = self else { return }
@@ -221,9 +265,7 @@ open class ImageViewerController: UIPageViewController {
     }
     
     private func closeDecorationViews(_ completion: (() -> Void)?) {
-        
         if isAnimating { return }
-        
         isAnimating = true
         
         UIView
@@ -238,14 +280,20 @@ open class ImageViewerController: UIPageViewController {
                     
                     let itemController = weakSelf.viewControllers?.first as? ItemController
                     
-                    itemController?.dismissItem(animations: {
-                        weakSelf.overlayView.dismiss()
-                    }, completion: {
-                        weakSelf.isAnimating = true
-                        
-                        weakSelf.dismiss(animated: false) {
-                            weakSelf.imageViewerControllerDelegate?.imageViewerDidClosed(weakSelf)
-                        }
+                    itemController?.dismissItem(
+                        animations: {
+                            if weakSelf.displacedViewsDataSource == nil {
+                                weakSelf.overlayView.dimissWithFade()
+                            } else {
+                                weakSelf.overlayView.dismissWithDisplacement()
+                            }
+                        },
+                        completion: {
+                            weakSelf.isAnimating = true
+                            
+                            weakSelf.dismiss(animated: false) {
+                                weakSelf.imageViewerControllerDelegate?.imageViewerDidClosed(weakSelf)
+                            }
                     })
                 }
         )
