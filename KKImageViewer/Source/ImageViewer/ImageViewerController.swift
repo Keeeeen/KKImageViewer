@@ -143,10 +143,6 @@ open class ImageViewerController: UIPageViewController {
                     .isActive = true
             }
             
-            headerView?.topAnchor
-                .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-                .isActive = true
-            
             headerView?.leadingAnchor
                 .constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
                 .isActive = true
