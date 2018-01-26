@@ -451,6 +451,10 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     public func scrollViewDidZoom(_ scrollView: UIScrollView) {
         itemView.center = contentCenter(forBoundingSize: scrollView.bounds.size,
                                         contentSize: scrollView.contentSize)
+        
+        if scrollView.zoomScale <= 1 {
+            
+        }
     }
     
     public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -509,11 +513,12 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
             return
         }
         
-        if scrollView.zoomScale == 1.0 && scrollView.zoomScale < option.doubleTapZoomScale {
+        let aspectFillScale = aspectFillZoomScale(forBoundingSize: scrollView.bounds.size, contentSize: itemView.bounds.size)
+        
+        if scrollView.zoomScale == 1.0 && scrollView.zoomScale < aspectFillScale {
             
-            let newScale = scrollView.zoomScale * option.doubleTapZoomScale
             let zoomRectangle = zoomRect(ForScrollView: scrollView,
-                                         scale: newScale,
+                                         scale: aspectFillScale,
                                          center: touchPoint)
             
             UIView
