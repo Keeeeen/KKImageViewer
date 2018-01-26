@@ -11,7 +11,6 @@ import UIKit
 open class ImageViewerController: UIPageViewController {
     
     private let option: ImageViewerOption
-    private var currentIndex: Int
     private let pagingDataSource: ImageViewerPagingDataSource
     private let itemDataSource: ImageViewerDataSource?
     private let displacedViewsDataSource: DisplacedViewsDataSource?
@@ -28,6 +27,8 @@ open class ImageViewerController: UIPageViewController {
     open var headerView: UIView?
     open var footerView: UIView?
     open var headerViewHeight: CGFloat = 0
+    
+    public var currentIndex: Int
     
     public weak var imageViewerControllerDelegate: ImageViewerControllerDelegate?
     
