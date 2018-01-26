@@ -136,7 +136,7 @@ open class ImageViewerController: UIPageViewController {
             
             if option.statusBarHidden, let superView = view.superview {
                 headerView?.topAnchor
-                    .constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor)
+                    .constraint(equalTo: superView.topAnchor)
                     .isActive = true
             } else {
                 headerView?.topAnchor
