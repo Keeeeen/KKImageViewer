@@ -451,10 +451,6 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     public func scrollViewDidZoom(_ scrollView: UIScrollView) {
         itemView.center = contentCenter(forBoundingSize: scrollView.bounds.size,
                                         contentSize: scrollView.contentSize)
-        
-        if scrollView.zoomScale <= 1 {
-            
-        }
     }
     
     public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
