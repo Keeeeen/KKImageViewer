@@ -206,13 +206,7 @@ open class ImageViewerController: UIPageViewController {
         initialItemController?
             .presentItem(
                 animations: { [weak self] in
-                    guard let weakSelf = self else { return }
-                    
-                    if weakSelf.displacedViewsDataSource == nil {
-                        weakSelf.overlayView.presentWithFade()
-                    } else {
-                        weakSelf.overlayView.presentWithDisplacement()
-                    }
+                    self?.overlayView.present()
                 },
                 completion: { [weak self] in
                     guard let weakSelf = self else { return }
@@ -279,11 +273,7 @@ open class ImageViewerController: UIPageViewController {
                     
                     itemController?.dismissItem(
                         animations: {
-                            if weakSelf.displacedViewsDataSource == nil {
-                                weakSelf.overlayView.dimissWithFade()
-                            } else {
-                                weakSelf.overlayView.dismissWithDisplacement()
-                            }
+                            weakSelf.overlayView.dismiss()
                         },
                         completion: {
                             weakSelf.isAnimating = true
