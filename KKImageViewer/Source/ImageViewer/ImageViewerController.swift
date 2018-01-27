@@ -278,7 +278,7 @@ open class ImageViewerController: UIPageViewController {
                         completion: {
                             weakSelf.isAnimating = true
                             
-                            weakSelf.dismiss(animated: false) {
+                            weakSelf.dissmissImageViewer(false) {
                                 weakSelf.imageViewerControllerDelegate?.imageViewerDidClosed(weakSelf)
                             }
                     })
