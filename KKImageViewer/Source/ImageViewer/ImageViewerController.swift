@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ImageViewerController: UIPageViewController {
+open class ImageViewerController: UIPageViewController, ItemControllerDelegate {
     
     private let option: ImageViewerOption
     private let pagingDataSource: ImageViewerPagingDataSource
@@ -365,11 +365,8 @@ open class ImageViewerController: UIPageViewController {
                 }
         )
     }
-}
-
-// MARK: - ItemControllerDelegate
-
-extension ImageViewerController: ItemControllerDelegate {
+    
+    // MARK: - ItemControllerDelegate
     
     open func itemController(_ controller: ItemController, didSwipeToDismissWithRatio ratio: CGFloat) {
         
