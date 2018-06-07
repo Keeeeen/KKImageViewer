@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13B595FF20C9724400300C59 /* ItemProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B595FE20C9724400300C59 /* ItemProgressView.swift */; };
 		B352F4062014805D00BDAA35 /* ImageViewerOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352F4052014805D00BDAA35 /* ImageViewerOption.swift */; };
 		B352F40820149EEA00BDAA35 /* DisplaceableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352F40720149EEA00BDAA35 /* DisplaceableView.swift */; };
 		B352F40C2014A32A00BDAA35 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B352F40B2014A32A00BDAA35 /* UIApplication.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		13B595FE20C9724400300C59 /* ItemProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProgressView.swift; sourceTree = "<group>"; };
 		B352F4052014805D00BDAA35 /* ImageViewerOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerOption.swift; sourceTree = "<group>"; };
 		B352F40720149EEA00BDAA35 /* DisplaceableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaceableView.swift; sourceTree = "<group>"; };
 		B352F40B2014A32A00BDAA35 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				B352F4112014BC2F00BDAA35 /* ItemController.swift */,
 				B352F4172014C22A00BDAA35 /* ItemControllerDelegate.swift */,
 				B352F4192014C5C100BDAA35 /* ItemBaseViewController.swift */,
+				13B595FE20C9724400300C59 /* ItemProgressView.swift */,
 			);
 			path = ItemController;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				B352F4062014805D00BDAA35 /* ImageViewerOption.swift in Sources */,
 				B352F42A2016391500BDAA35 /* ImageViewerPagingDataSource.swift in Sources */,
 				B352F43020170EFF00BDAA35 /* ImageViewerController.swift in Sources */,
+				13B595FF20C9724400300C59 /* ItemProgressView.swift in Sources */,
 				B352F4202014D9C400BDAA35 /* CGPoint.swift in Sources */,
 				B352F40820149EEA00BDAA35 /* DisplaceableView.swift in Sources */,
 				B352F4162014C10500BDAA35 /* ItemView.swift in Sources */,

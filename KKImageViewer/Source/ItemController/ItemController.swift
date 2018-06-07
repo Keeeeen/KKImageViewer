@@ -21,4 +21,6 @@ public protocol ItemController: class {
 
     func presentItem(animations: () -> Void, completion: @escaping () -> Void)
     func dismissItem(animations: () -> Void, completion: @escaping () -> Void)
+    
+    func setProgress(value: Float)
 }

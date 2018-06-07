@@ -34,6 +34,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     
     public weak var delegate: ItemControllerDelegate?
     public weak var displacedViewsDataSource: DisplacedViewsDataSource?
+    public var progressView: ItemProgressView?
     
     // MARK: Initialize
     
@@ -73,6 +74,10 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
         scrollView.removeObserver(self, forKeyPath: "contentOffset")
     }
     
+    public func setProgress(value: Float) {
+        progressView?.setProgress(value: value)
+    }
+    
     // MARK: LifeCycle
     
     override open func viewDidLoad() {
@@ -80,6 +85,9 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
 
         view.addSubview(scrollView)
         view.addSubview(activityIndicatorView)
+        if let p = progressView {
+            view.addSubview(p)
+        }
         
         if let swipeToDismissRecognizer = swipeToDismissRecognizer {
             view.addGestureRecognizer(swipeToDismissRecognizer)
@@ -110,6 +118,8 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
             
             itemView.center = scrollView.boundsCenter
         }
+        
+        progressView?.center = view.boundsCenter
     }
     
     override open func viewDidAppear(_ animated: Bool) {
