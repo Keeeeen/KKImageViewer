@@ -369,7 +369,9 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
                 
                     },
                     completion: { [weak self] _ in
-                        self?.itemView.isHidden = false
+                        var itemView = self?.itemView
+                        itemView?.image = image
+                        itemView?.isHidden = false
                         displacedView.isHidden = false
                         animatedImageView.removeFromSuperview()
                         
