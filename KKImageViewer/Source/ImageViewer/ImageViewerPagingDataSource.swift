@@ -92,6 +92,7 @@ final class ImageViewerPagingDataSource: NSObject, UIPageViewControllerDataSourc
                                                       option: option,
                                                       isInitialController: isInitial)
         }
+        imageViewController.itemView.image = imageViewerDataSource?.providedImageViewerThumbnail(at: index)
         imageViewController.delegate = itemControllerDelegate
         imageViewController.displacedViewsDataSource = displacedViewsDataSource
         imageViewController.progressView = imageViewerDataSource?.progressView()
