@@ -12,10 +12,15 @@ public protocol ImageViewerDataSource: class {
     func numberOfItems() -> Int
     func providedImageViewerItem(at index: Int) -> ImageViewerItem
     func progressView() -> ItemProgressView?
+    func providedImageViewerThumbnail(at index: Int) -> UIImage?
 }
 
 public extension ImageViewerDataSource {
     func progressView() -> ItemProgressView? {
+        return nil
+    }
+    
+    func providedImageViewerThumbnail(at index: Int) -> UIImage? {
         return nil
     }
 }
