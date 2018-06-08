@@ -9,10 +9,15 @@
 import Foundation
 
 public protocol ImageViewerControllerDelegate: class {
-    
     func imageViewerDidLaunch(_ imageViewerContrller: ImageViewerController)
     func imageViewerDidLandedPage(_ imageViewerContrller: ImageViewerController, at index: Int)
     func imageViewerDidClosed(_ imageViewerContrller: ImageViewerController)
     func imageViewerDidSwipedToDismiss(_ imageViewerContrller: ImageViewerController)
-    
+}
+
+public extension ImageViewerControllerDelegate {
+    func imageViewerDidLaunch(_ imageViewerContrller: ImageViewerController) {}
+    func imageViewerDidLandedPage(_ imageViewerContrller: ImageViewerController, at index: Int) {}
+    func imageViewerDidClosed(_ imageViewerContrller: ImageViewerController) {}
+    func imageViewerDidSwipedToDismiss(_ imageViewerContrller: ImageViewerController) {}
 }

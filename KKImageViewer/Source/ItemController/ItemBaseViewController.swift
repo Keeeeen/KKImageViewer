@@ -15,6 +15,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     public let isInitialController: Bool
     
     public let numberOfItems: Int
+    private let fetchProgressBlock: FetchProgressBlock?
     private let fetchImageBlock: FetchImageBlock
     private let option: ImageViewerOption
     private let displacementSpringBounce: CGFloat
@@ -34,12 +35,18 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
     
     public weak var delegate: ItemControllerDelegate?
     public weak var displacedViewsDataSource: DisplacedViewsDataSource?
+    public var progressView: ItemProgressView? {
+        didSet {
+            progressView?.isHidden = isInitialController
+        }
+    }
     
     // MARK: Initialize
     
     init(
         numberOfItems: Int,
         startIndex: Int,
+        fetchProgressBlock: FetchProgressBlock?,
         fetchImageBlock: @escaping FetchImageBlock,
         option: ImageViewerOption,
         isInitialController: Bool = false
@@ -48,6 +55,7 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
         self.index = startIndex
         self.numberOfItems = numberOfItems
         self.isInitialController = isInitialController
+        self.fetchProgressBlock = fetchProgressBlock
         self.fetchImageBlock = fetchImageBlock
         self.option = option
         
@@ -80,6 +88,9 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
 
         view.addSubview(scrollView)
         view.addSubview(activityIndicatorView)
+        if let p = progressView {
+            view.addSubview(p)
+        }
         
         if let swipeToDismissRecognizer = swipeToDismissRecognizer {
             view.addGestureRecognizer(swipeToDismissRecognizer)
@@ -110,6 +121,8 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
             
             itemView.center = scrollView.boundsCenter
         }
+        
+        progressView?.center = view.boundsCenter
     }
     
     override open func viewDidAppear(_ animated: Bool) {
@@ -308,14 +321,43 @@ open class ItemBaseViewController<T: UIView>: UIViewController, ItemController, 
         return isVisibleEnough ? displacedView : nil
     }
     
+    func showProgress() {
+        progressView?.alpha = 0
+        progressView?.isHidden = false
+        UIView.animate(withDuration: 0.2) {
+            self.progressView?.alpha = 1.0
+        }
+    }
+    
+    func hideProgress() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.progressView?.alpha = 0.0
+        }) { _ in
+            self.progressView?.isHidden = true
+        }
+    }
+    
+    func setProgress(completed: Float, total: Float) {
+        progressView?.setProgress(completed: completed, total: total, percent: completed / total)
+    }
+    
     // MARK: - ItemController functions
     
     public func fetchImage() {
+        if let fetchProgress = fetchProgressBlock {
+            showProgress()
+            
+            fetchProgress { [weak self] completed, total in
+                self?.setProgress(completed: completed, total: total)
+            }
+        }
+        
         fetchImageBlock { [weak self] image in
             guard let image = image else { return }
             
             DispatchQueue.main.async {
                 self?.activityIndicatorView.stopAnimating()
+                self?.hideProgress()
                 
                 var itemView = self?.itemView
                 itemView?.image = image
