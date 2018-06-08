@@ -14,13 +14,12 @@ public protocol ItemController: class {
     
     var isInitialController: Bool { get }
     
-    weak var delegate: ItemControllerDelegate? { get set }
-    weak var displacedViewsDataSource: DisplacedViewsDataSource? { get set }
+    var delegate: ItemControllerDelegate? { get set }
+    var displacedViewsDataSource: DisplacedViewsDataSource? { get set }
 
     func fetchImage()
 
     func presentItem(animations: () -> Void, completion: @escaping () -> Void)
     func dismissItem(animations: () -> Void, completion: @escaping () -> Void)
     
-    func setProgress(value: Float)
 }

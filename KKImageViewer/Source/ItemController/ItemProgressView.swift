@@ -18,5 +18,5 @@ open class ItemProgressView: UIView {
         super.init(coder: aDecoder)
     }
     
-    open func setProgress(value: Float) {}
+    open func setProgress(completed: Float, total: Float, percent: Float) {}
 }

@@ -75,17 +75,26 @@ final class ImageViewerPagingDataSource: NSObject, UIPageViewControllerDataSourc
             return UIViewController()
         }
         
+        let imageViewController: ImageViewController
         switch item {
         case .image(let fetchImageBlock):
-            let imageViewController = ImageViewController(numberOfItems: numberOfItems,
-                                                          startIndex: index,
-                                                          fetchImageBlock: fetchImageBlock,
-                                                          option: option,
-                                                          isInitialController: isInitial)
-            imageViewController.delegate = itemControllerDelegate
-            imageViewController.displacedViewsDataSource = displacedViewsDataSource
-            imageViewController.progressView = imageViewerDataSource?.progressView()
-            return imageViewController
+            imageViewController = ImageViewController(numberOfItems: numberOfItems,
+                                                      startIndex: index,
+                                                      fetchProgressBlock: nil,
+                                                      fetchImageBlock: fetchImageBlock,
+                                                      option: option,
+                                                      isInitialController: isInitial)
+        case .imageWithProgress(let fetchProgressBlock, let fetchImageBlock):
+            imageViewController = ImageViewController(numberOfItems: numberOfItems,
+                                                      startIndex: index,
+                                                      fetchProgressBlock: fetchProgressBlock,
+                                                      fetchImageBlock: fetchImageBlock,
+                                                      option: option,
+                                                      isInitialController: isInitial)
         }
+        imageViewController.delegate = itemControllerDelegate
+        imageViewController.displacedViewsDataSource = displacedViewsDataSource
+        imageViewController.progressView = imageViewerDataSource?.progressView()
+        return imageViewController
     }
 }

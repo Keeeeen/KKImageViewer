@@ -22,5 +22,4 @@ public protocol ItemControllerDelegate: class {
     func itemControllerWillDisappear(_ controller: ItemController)
     func itemControllerDidAppear(_ controller: ItemController)
     
-    func progress(at index: Int) -> Float
 }

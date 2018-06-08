@@ -32,8 +32,6 @@ open class ImageViewerController: UIPageViewController, ItemControllerDelegate {
     
     public weak var imageViewerControllerDelegate: ImageViewerControllerDelegate?
     
-    private var progressDict: [Int: Float] = [:]
-    
     // MAKR: - Initialize
     
     public init(
@@ -339,15 +337,6 @@ open class ImageViewerController: UIPageViewController, ItemControllerDelegate {
         closeDecorationViews(completion)
     }
     
-    public func setProgress(value: Float, at index: Int) {
-        progressDict[index] = value
-        
-        childViewControllers
-            .compactMap { $0 as? ImageViewController}
-            .first(where: { $0.index == index })?
-            .setProgress(value: value)
-    }
-    
     // MARK: Selectors
     
     @objc
@@ -433,9 +422,5 @@ open class ImageViewerController: UIPageViewController, ItemControllerDelegate {
         headerView?.sizeToFit()
         footerView?.sizeToFit()
         imageViewerControllerDelegate?.imageViewerDidLandedPage(self, at: currentIndex)
-    }
-    
-    public func progress(at index: Int) -> Float {
-        return progressDict[index] ?? 0
     }
 }
