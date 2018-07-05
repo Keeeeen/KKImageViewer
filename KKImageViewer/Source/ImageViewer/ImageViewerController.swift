@@ -27,6 +27,7 @@ open class ImageViewerController: UIPageViewController, ItemControllerDelegate {
     open var headerView: UIView?
     open var footerView: UIView?
     open var headerViewHeight: CGFloat = 0
+    open var footerViewHeight: CGFloat = 0
     
     public var currentIndex: Int
     
@@ -175,6 +176,10 @@ open class ImageViewerController: UIPageViewController, ItemControllerDelegate {
         
         headerView?.heightAnchor
             .constraint(equalToConstant: headerViewHeight)
+            .isActive = true
+        
+        footerView?.heightAnchor
+            .constraint(equalToConstant: footerViewHeight)
             .isActive = true
         
         footerView?.bottomAnchor
